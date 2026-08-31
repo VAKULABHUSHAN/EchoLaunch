@@ -1,0 +1,57 @@
+{
+    "audio": {
+        "sample_rate": 44100,
+        "chunk_size": 1024,
+        "clap_threshold": 0.75,
+        "minimum_clap_interval": 0.15,
+        "sequence_timeout": 1.5,
+        "energy_threshold": 0.05,
+        "peak_threshold": 0.2
+    },
+    "commands": {
+        "dev mode": {
+            "name": "Developer Mode",
+            "aliases": ["dev", "developer mode", "developer", "coding mode"],
+            "apps": [
+                {
+                    "name": "VS Code",
+                    "path": "C:\\Users\\VAKUL\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+                },
+                {
+                    "name": "Antigravity IDE",
+                    "path": "C:\\Users\\VAKUL\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe"
+                },
+                {
+                    "name": "Google Chrome",
+                    "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+                },
+                {
+                    "name": "Kreo Mouse",
+                    "path": "C:\\Users\\VAKUL\\Downloads\\Kreo_Harpy_Gaming_Mouse.exe"
+                },
+                {
+                    "name": "WhatsApp",
+                    "path": "whatsapp:"
+                }
+            ]
+        },
+        "game mode": {
+            "name": "Gaming Mode",
+            "aliases": ["game", "gaming", "play", "play mode"],
+            "apps": [
+                {
+                    "name": "VALORANT",
+                    "path": "C:\\Riot Games\\VALORANT\\live\\VALORANT.exe"
+                },
+                {
+                    "name": "Kreo Mouse",
+                    "path": "C:\\Users\\VAKUL\\Downloads\\Kreo_Harpy_Gaming_Mouse.exe"
+                },
+                {
+                    "name": "Google Chrome",
+                    "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+                }
+            ]
+        }
+    }
+}

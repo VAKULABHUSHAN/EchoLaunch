@@ -1,0 +1,85 @@
+[INFO] 2026-08-31 18:34:36 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:34:36 - Main - Press Ctrl+C to exit.
+[INFO] 2026-08-31 18:34:50 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:34:50 - Main - Press Ctrl+C to exit.
+[INFO] 2026-08-31 18:36:48 - Main - Shutting down...
+[INFO] 2026-08-31 18:36:48 - AudioStream - Audio stream stopped.
+[INFO] 2026-08-31 18:36:51 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:36:51 - Main - Press Ctrl+C to exit.
+[INFO] 2026-08-31 18:38:34 - Main - Shutting down...
+[INFO] 2026-08-31 18:38:35 - AudioStream - Audio stream stopped.
+[INFO] 2026-08-31 18:43:56 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:44:12 - AudioStream - Audio stream stopped.
+[INFO] 2026-08-31 18:44:14 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:45:32 - Calibrator - Starting Calibration Mode.
+[INFO] 2026-08-31 18:45:32 - Calibrator - Please remain quiet for 5 seconds to measure background noise...
+[INFO] 2026-08-31 18:45:35 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:45:40 - AudioStream - Audio stream stopped.
+[INFO] 2026-08-31 18:45:40 - Calibrator - Background Measurement Complete.
+[INFO] 2026-08-31 18:45:40 - Calibrator - Mean Energy: 0.00003, Max Peak: 0.00494
+[INFO] 2026-08-31 18:45:40 - Calibrator - 
+Now, please clap naturally 5 times.
+[INFO] 2026-08-31 18:45:40 - Calibrator - Wait for the prompt to start clapping...
+[INFO] 2026-08-31 18:45:42 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:45:43 - Calibrator - 
+[Clap recorded] Energy: 0.0001, Peak: 0.0003
+[INFO] 2026-08-31 18:45:43 - Calibrator - 
+[Clap recorded] Energy: 0.0001, Peak: 0.0003
+[INFO] 2026-08-31 18:45:43 - Calibrator - 
+[Clap recorded] Energy: 0.0003, Peak: 0.0012
+[INFO] 2026-08-31 18:46:11 - Calibrator - Calibration interrupted.
+[INFO] 2026-08-31 18:46:11 - AudioStream - Audio stream stopped.
+[ERROR] 2026-08-31 18:46:11 - Calibrator - Not enough claps recorded. Calibration aborted.
+[INFO] 2026-08-31 18:46:19 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:55:45 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:55:54 - SpeechDetector - [SPEECH] Recognized: 'Dev mod'
+[ERROR] 2026-08-31 18:55:54 - SpeechDetector - Error during speech recognition: cannot use 'dict' as a dict key (unhashable type: 'dict')
+[INFO] 2026-08-31 18:55:56 - SpeechDetector - [SPEECH] Recognized: 'Dev mod'
+[ERROR] 2026-08-31 18:55:56 - SpeechDetector - Error during speech recognition: cannot use 'dict' as a dict key (unhashable type: 'dict')
+[INFO] 2026-08-31 18:57:14 - SpeechDetector - [SPEECH] Recognized: 'save mode'
+[ERROR] 2026-08-31 18:57:14 - SpeechDetector - Error during speech recognition: cannot use 'dict' as a dict key (unhashable type: 'dict')
+[INFO] 2026-08-31 18:57:19 - SpeechDetector - [SPEECH] Recognized: 'Dev mod'
+[ERROR] 2026-08-31 18:57:19 - SpeechDetector - Error during speech recognition: cannot use 'dict' as a dict key (unhashable type: 'dict')
+[INFO] 2026-08-31 18:58:29 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 18:58:36 - SpeechDetector - [SPEECH] Recognized: 'new mod'
+[INFO] 2026-08-31 18:58:40 - SpeechDetector - [SPEECH] Recognized: 'Dev mode'
+[INFO] 2026-08-31 18:58:40 - WorkflowManager - [ACTION] Workflow Activated: Developer Mode
+[INFO] 2026-08-31 18:58:40 - AppLauncher - Launched: VS Code
+[INFO] 2026-08-31 18:58:40 - AppLauncher - Launched: Antigravity
+[INFO] 2026-08-31 18:58:40 - AppLauncher - Google Chrome is already running. Skipping.
+[WARNING] 2026-08-31 19:02:06 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:02:06 - AudioStream - Audio stream status: input overflow
+[INFO] 2026-08-31 19:03:36 - SpeechDetector - [SPEECH] Recognized: 'Telugu'
+[INFO] 2026-08-31 19:05:02 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 19:05:43 - SpeechDetector - [SPEECH] Recognized: 'Dev mod'
+[INFO] 2026-08-31 19:09:19 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 19:09:34 - SpeechDetector - [SPEECH] Recognized: 'Dev mod'
+[INFO] 2026-08-31 19:09:34 - WorkflowManager - [ACTION] Workflow Activated: Developer Mode
+[INFO] 2026-08-31 19:09:34 - AppLauncher - Launched: VS Code
+[INFO] 2026-08-31 19:09:34 - AppLauncher - Antigravity IDE is already running. Skipping.
+[INFO] 2026-08-31 19:09:34 - AppLauncher - Google Chrome is already running. Skipping.
+[INFO] 2026-08-31 19:09:34 - AppLauncher - Launched: WhatsApp
+[INFO] 2026-08-31 19:17:08 - AudioStream - [LISTENING] Microphone active: Microphone Array (Intel® Smart 
+[INFO] 2026-08-31 19:17:24 - SpeechDetector - [SPEECH] Recognized: 'Dev mode'
+[INFO] 2026-08-31 19:17:24 - WorkflowManager - [ACTION] Workflow Activated: Developer Mode
+[INFO] 2026-08-31 19:17:24 - AppLauncher - Launched: VS Code
+[INFO] 2026-08-31 19:17:24 - AppLauncher - Antigravity IDE is already running. Skipping.
+[INFO] 2026-08-31 19:17:24 - AppLauncher - Google Chrome is already running. Skipping.
+[INFO] 2026-08-31 19:17:28 - AppLauncher - Launched: Kreo Mouse
+[INFO] 2026-08-31 19:17:28 - AppLauncher - Launched: WhatsApp
+[WARNING] 2026-08-31 19:17:49 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:49 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:50 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:50 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:52 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:52 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:52 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:52 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:53 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:53 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:59 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:59 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:59 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:17:59 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:18:00 - AudioStream - Audio stream status: input overflow
+[WARNING] 2026-08-31 19:18:00 - AudioStream - Audio stream status: input overflow
