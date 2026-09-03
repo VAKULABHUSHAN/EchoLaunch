@@ -23,7 +23,7 @@ class IntentEngine:
     like 'dev mode' ('demo', 'do more', 'deve mode', 'deb mode').
     """
     CONVERSATIONAL_INTENTS = {"GREETING", "STATUS", "TIME"}
-    ACTION_INTENTS = {"DEVELOPER_MODE", "GAMING_MODE"}
+    ACTION_INTENTS = {"DEVELOPER_MODE", "GAMING_MODE", "ENTERTAINMENT_MODE"}
 
     # Comprehensive dictionaries of natural intent phrases
     INTENT_PHRASES: Dict[str, List[str]] = {
@@ -40,6 +40,11 @@ class IntentEngine:
             "game mode", "gaming mode", "play mode", "let's play", "lets play",
             "start gaming", "launch valorant", "open valorant", "prepare gaming setup",
             "open my games", "open games", "gaming setup", "game setup", "game", "gaming"
+        ],
+        "ENTERTAINMENT_MODE": [
+            "entertainment mode", "entertain mode", "open youtube", "launch youtube",
+            "youtube mode", "watch youtube", "watch videos", "play youtube",
+            "open video", "chill mode", "relax mode", "video mode", "youtube", "entertainment"
         ],
         "GREETING": [
             "hello", "hey", "hi", "hey clapos", "hello clapos", "hi clapos",
@@ -60,6 +65,7 @@ class IntentEngine:
     SEMANTIC_ANCHORS: Dict[str, Set[str]] = {
         "DEVELOPER_MODE": {"dev", "developer", "coding", "vscode", "code", "workspace", "demo", "deve", "more"},
         "GAMING_MODE": {"game", "gaming", "valorant", "games", "play"},
+        "ENTERTAINMENT_MODE": {"entertainment", "youtube", "videos", "video", "entertain", "chill", "relax"},
         "GREETING": {"hello", "hey", "hi", "morning", "afternoon", "evening"},
         "STATUS": {"doing", "listening", "status"},
         "TIME": {"time", "clock"}

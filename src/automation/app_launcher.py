@@ -57,7 +57,8 @@ class AppLauncher:
         if not exe_name or ":" in exe_name or exe_name.lower().endswith(".lnk"):
             exe_name = app_name
 
-        if AppLauncher.is_app_running(exe_name):
+        # If already running and no specific arguments (e.g. URLs) are passed, skip duplicate launch
+        if AppLauncher.is_app_running(exe_name) and not arguments:
             logger.info(f"'{app_name}' is already running.")
             return True, "Already running"
 

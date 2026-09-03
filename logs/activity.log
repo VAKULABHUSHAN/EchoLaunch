@@ -256,3 +256,17 @@ Now, please clap naturally 5 times.
 [INFO] 2026-09-03 20:42:31 - SpeechRecognizer - STT worker thread stopped.
 [INFO] 2026-09-03 20:42:31 - TTSEngine - TTS worker thread stopped.
 [INFO] 2026-09-03 20:42:31 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:47:02 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:47:02 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-03 20:47:11 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:47:11 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:47:11 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:47:11 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:47:13 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:47:14 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:47:14 - SpeechRecognizer - Faster-Whisper model loaded in 1466ms.
+[INFO] 2026-09-03 20:50:22 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:50:22 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-03 20:50:22 - AppLauncher - Launch command issued for 'YouTube'.
+[INFO] 2026-09-03 20:50:26 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:50:28 - TTSEngine - TTS worker thread stopped.

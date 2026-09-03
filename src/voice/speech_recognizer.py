@@ -134,7 +134,7 @@ class FasterWhisperRecognizer(SpeechRecognizer):
             best_of=1,
             temperature=0.0,
             condition_on_previous_text=False,
-            initial_prompt="Dev mode, game mode, developer mode, gaming mode, what time is it, hello.",
+            initial_prompt="Dev mode, game mode, entertainment mode, developer mode, gaming mode, youtube, what time is it, hello.",
             vad_filter=False
         )
 

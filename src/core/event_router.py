@@ -117,6 +117,11 @@ class EventRouter:
                 print("\n[WORKFLOW] Gaming Mode detected\n[WORKFLOW] Automation disabled (debug mode)")
             else:
                 self.workflow_manager.trigger_workflow("game_mode")
+        elif intent == "ENTERTAINMENT_MODE":
+            if not automation_enabled:
+                print("\n[WORKFLOW] Entertainment Mode detected\n[WORKFLOW] Automation disabled (debug mode)")
+            else:
+                self.workflow_manager.trigger_workflow("entertainment_mode")
 
         # -------------------------------------------------------------
         # 4. Record to Command History
@@ -170,6 +175,8 @@ class EventRouter:
                 msg = "Your development environment is ready."
             elif "Gaming" in result.workflow:
                 msg = "Your gaming environment is ready."
+            elif "Entertainment" in result.workflow:
+                msg = "YouTube is ready."
             else:
                 msg = f"Your {result.workflow} is ready."
 

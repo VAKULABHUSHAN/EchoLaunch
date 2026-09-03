@@ -79,6 +79,7 @@ CLAPOS V3 transforms your desktop into an intelligent, always-running, offline-f
 | :--- | :--- | :--- | :--- |
 | *"Dev mode"*, *"open coding setup"*, *"start coding"*, *"open vscode"* | `DEVELOPER_MODE` | *"Sure, opening your development environment."* | Launches VS Code, Antigravity, Google Chrome |
 | *"Game mode"*, *"gaming mode"*, *"launch valorant"*, *"let's play"* | `GAMING_MODE` | *"Alright, switching to gaming mode."* | Launches VALORANT, Kreo Mouse Software, Google Chrome |
+| *"Watch something"*, *"entertainment mode"*, *"chill out"* | `ENTERTAINMENT_MODE` | *"Okay, opening YouTube for you."* | Launches YouTube in Google Chrome |
 | *"What time is it?"*, *"tell me the time"*, *"current time"* | `TIME` | *"The time is 7:30 PM."* | Speaks current system time |
 | *"Hello"*, *"hey CLAPOS"*, *"good morning"* | `GREETING` | *"Hey! What can I do for you?"* | Conversational acknowledgment |
 | *"What are you doing?"*, *"are you listening?"* | `STATUS` | *"I'm running and ready for your command."* | System status report |

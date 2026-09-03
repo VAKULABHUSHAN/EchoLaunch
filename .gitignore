@@ -1,0 +1,26 @@
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Logs
+logs/
+*.log
+
+# Whisper & HuggingFace Models / Cache
+.cache/
+models/
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+
+# Node / PM2 Logs
+node_modules/
+pm2-*.log

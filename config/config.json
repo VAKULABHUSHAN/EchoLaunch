@@ -57,15 +57,15 @@
             "apps": [
                 {
                     "name": "VS Code",
-                    "path": "C:\\Users\\VAKUL\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+                    "path": "${VSCODE_PATH}"
                 },
                 {
                     "name": "Antigravity",
-                    "path": "C:\\Users\\VAKUL\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe"
+                    "path": "${ANTIGRAVITY_PATH}"
                 },
                 {
                     "name": "Google Chrome",
-                    "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+                    "path": "${CHROME_PATH}"
                 }
             ]
         },
@@ -74,11 +74,21 @@
             "apps": [
                 {
                     "name": "VALORANT",
-                    "path": "C:\\Users\\VAKUL\\Desktop\\VALORANT.lnk"
+                    "path": "${VALORANT_PATH}"
                 },
                 {
                     "name": "Google Chrome",
-                    "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+                    "path": "${CHROME_PATH}"
+                }
+            ]
+        },
+        "entertainment_mode": {
+            "name": "Entertainment Mode",
+            "apps": [
+                {
+                    "name": "YouTube",
+                    "path": "${CHROME_PATH}",
+                    "arguments": "https://www.youtube.com"
                 }
             ]
         }
@@ -95,6 +105,12 @@
             "Gaming setup activated.",
             "Let's game.",
             "Launching your gaming environment."
+        ],
+        "ENTERTAINMENT_MODE": [
+            "Sure, opening YouTube for you.",
+            "Entertainment mode activated.",
+            "Alright, kicking back with some YouTube.",
+            "Opening YouTube in Chrome."
         ],
         "GREETING": [
             "Hey! What can I do for you?",
