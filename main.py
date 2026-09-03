@@ -1,121 +1,177 @@
-import time
-import threading
-# pyrefly: ignore [missing-import]
-import numpy as np
-import sys
 import argparse
+import signal
+import sys
+import time
+import numpy as np
+
+# Ensure UTF-8 output on Windows consoles
+if sys.platform == "win32":
+    try:
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        if hasattr(sys.stderr, "reconfigure"):
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
+from src.audio.audio_manager import AudioManager
+from src.audio.voice_activity_detector import VoiceActivityDetector
+from src.voice.speech_recognizer import FasterWhisperRecognizer
 from src.utils.config_manager import ConfigManager
-from src.utils.logger import setup_logger
-from src.audio.audio_stream import AudioStream
-from src.audio.speech_detector import SpeechDetector
-from src.automation.workflow_manager import WorkflowManager
-from src.ui.main_window import MainWindow
+from src.core.assistant import ClaposAssistant
 
-logger = setup_logger("Main")
 
-class AppController:
-    def __init__(self, debug=False):
-        self.config = ConfigManager()
-        
-        # Audio config
-        audio_cfg = self.config.get("audio", "sample_rate", 44100)
-        self.chunk_size = self.config.get("audio", "chunk_size", 1024)
-        energy_thresh = self.config.get("audio", "energy_threshold", 0.05)
-        
-        self.workflow_manager = WorkflowManager(self.config)
-        
-        # Setup Speech Detector
-        self.detector = SpeechDetector(
-            sample_rate=audio_cfg,
-            energy_threshold=energy_thresh,
-            silence_timeout=1.0,
-            debug=debug
-        )
-        self.detector.set_callback(self.on_speech_recognized)
-        
-        self.stream = AudioStream(sample_rate=audio_cfg, chunk_size=self.chunk_size)
-        
-        # UI Setup
-        self.window = MainWindow(
-            config=self.config,
-            start_audio_cb=self.start_audio,
-            stop_audio_cb=self.stop_audio
-        )
-        
-        self.last_action_text = "None"
-        self.last_phrase = "Waiting..."
-        self.is_running = True
+def run_list_devices():
+    """Lists all available microphone input devices."""
+    devices = AudioManager.list_input_devices()
+    print("\n[AUDIO INPUT DEVICES]\n")
+    for d in devices:
+        default_tag = " (DEFAULT)" if d["is_default"] else ""
+        print(f"  [{d['index']}] {d['name']}{default_tag}")
+        print(f"      Channels: {d['channels']}, Default Rate: {d['default_samplerate']} Hz\n")
 
-    def on_speech_recognized(self, text):
-        self.last_phrase = f'"{text}"'
-        
-        # Check if text matches a configured phrase exactly or contains it
-        matched_command = None
-        commands = self.config.config.get("commands", {})
-        
-        for cmd_key, cmd_cfg in commands.items():
-            phrases_to_check = [cmd_key.lower()] + [alias.lower() for alias in cmd_cfg.get("aliases", [])]
-            for phrase in phrases_to_check:
-                if phrase in text:
-                    matched_command = cmd_key
-                    break
-            if matched_command:
-                break
-        
-        if matched_command:
-            self.workflow_manager.trigger(matched_command)
-            command_cfg = commands.get(matched_command)
-            self.last_action_text = command_cfg.get("name", f"Workflow {matched_command}")
-        else:
-            self.last_action_text = f"Unrecognized phrase"
-            
-        self.window.update_dashboard(0, 0, self.last_phrase, self.last_action_text)
 
-    def audio_callback(self, indata: np.ndarray):
-        # The stream callback provides audio chunks
-        self.detector.analyze_chunk(indata)
-        
-        # Extract basic mic level (RMS) for UI visualization
-        rms = np.sqrt(np.mean(indata**2))
-        
-        # Update UI safely
-        self.window.update_dashboard(rms, 0.0, self.last_phrase, self.last_action_text)
+def run_mic_test(config_path: str = "config/config.json"):
+    """
+    Dedicated microphone and VAD test mode.
+    Does NOT load Whisper, TTS, or workflow engines.
+    """
+    cfg = ConfigManager(config_path=config_path, validate=True)
+    audio_cfg = cfg.get_section("audio", {})
+    vad_cfg = cfg.get_section("vad", {})
 
-    def start_audio(self):
-        try:
-            self.stream.start(self.audio_callback)
-        except Exception as e:
-            logger.error(f"Error starting audio: {e}")
+    sample_rate = int(audio_cfg.get("sample_rate", 16000))
+    chunk_size = int(audio_cfg.get("chunk_size", 1024))
+    device_idx = audio_cfg.get("device")
 
-    def stop_audio(self):
-        self.stream.stop()
+    print("\n" + "=" * 40)
+    print("       CLAPOS MICROPHONE TEST")
+    print("=" * 40 + "\n")
 
-    def run(self):
-        self.start_audio()
-        
-        # Start UI mainloop
-        self.window.mainloop()
-        
-        self.is_running = False
-        self.stop_audio()
+    audio_manager = AudioManager(
+        sample_rate=sample_rate,
+        chunk_size=chunk_size,
+        device=device_idx
+    )
+
+    vad = VoiceActivityDetector(
+        sample_rate=sample_rate,
+        adaptive_threshold=bool(vad_cfg.get("adaptive_threshold", True)),
+        noise_floor_window=float(vad_cfg.get("noise_floor_window", 2.0)),
+        sensitivity_multiplier=float(vad_cfg.get("sensitivity_multiplier", 2.0)),
+        minimum_threshold=float(vad_cfg.get("minimum_threshold", 0.004)),
+        maximum_threshold=float(vad_cfg.get("maximum_threshold", 0.05)),
+        silence_duration=float(vad_cfg.get("silence_duration", 0.45)),
+        minimum_speech_duration=float(vad_cfg.get("minimum_speech_duration", 0.20)),
+        max_recording_duration=float(vad_cfg.get("max_recording_duration", 6.0)),
+        pre_roll_duration=float(vad_cfg.get("pre_roll_duration", 0.4)),
+        debug=False
+    )
+
+    def on_speech_start():
+        print("  >>> Speech detected! 🎤")
+
+    def on_speech_end(audio, duration, t0, t1, t2):
+        print(f"  >>> Speech ended (Duration: {duration:.2f}s)\n")
+
+    vad.set_callbacks(on_speech_start=on_speech_start, on_speech_end=on_speech_end)
+
+    # Meter state
+    last_print = 0.0
+
+    def process_frame(chunk: np.ndarray):
+        nonlocal last_print
+        vad.process_frame(chunk)
+        now = time.time()
+        if now - last_print >= 0.20:
+            last_print = now
+            rms = vad._calculate_rms(chunk)
+            bar_len = min(int(rms * 500), 30)
+            bar = "█" * max(bar_len, 1)
+            tag = "SPEECH" if vad.is_speaking else ""
+            print(f"RMS: {rms:.4f}  {bar:<30} {tag}", flush=True)
+
+    audio_manager.start(process_frame)
+    dev_info = audio_manager.get_active_device_info()
+
+    print(f"Microphone:\n{dev_info['name']}\n")
+    print(f"Sample Rate:\n{sample_rate} Hz\n")
+    print(f"Chunk Size:\n{chunk_size}\n")
+    print("Listening... (Press Ctrl+C to stop)\n")
+
+    try:
+        while True:
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        print("\nStopping microphone test...")
+    finally:
+        audio_manager.stop()
+        print("Microphone test stopped.")
+
+
+def run_benchmark():
+    """
+    Benchmarks tiny.en vs base.en STT latency on typical desktop assistant phrases.
+    """
+    print("\n" + "=" * 40)
+    print("       MODEL BENCHMARK (tiny.en vs base.en)")
+    print("=" * 40 + "\n")
+
+    test_models = ["tiny.en", "base.en"]
+    # Synthesize test audio bursts (1.0 second silence + tone + silence)
+    sr = 16000
+    t = np.linspace(0, 0.8, int(sr * 0.8), False)
+    test_audio = (np.sin(440 * t * 2 * np.pi) * 0.1).astype(np.float32)
+
+    for model_name in test_models:
+        print(f"Loading '{model_name}' for benchmark...")
+        recognizer = FasterWhisperRecognizer(model_name=model_name, device="cpu", compute_type="int8")
+        recognizer.initialize_model()
+
+        latencies = []
+        for _ in range(5):
+            res = recognizer.transcribe(test_audio)
+            latencies.append(res.inference_time_ms)
+
+        avg_lat = np.mean(latencies[1:])  # drop warmup
+        print(f"\n[{model_name}]")
+        print(f"Average STT Latency: {avg_lat:.0f}ms")
+        print(f"Min Latency: {min(latencies):.0f}ms")
+        print(f"Max Latency: {max(latencies):.0f}ms\n" + "-" * 30)
+
 
 def main():
-    parser = argparse.ArgumentParser(description="CLAPOS - Acoustic Gesture Desktop Automation")
-    parser.add_argument("--calibrate", action="store_true", help="Run calibration mode")
-    parser.add_argument("--debug", action="store_true", help="Run in debug mode with extra logging")
-    parser.add_argument("--test", action="store_true", help="Run test mode with synthetic audio")
+    parser = argparse.ArgumentParser(description="CLAPOS V3 — Voice-First Personal Desktop Assistant")
+    parser.add_argument("--debug", action="store_true", help="Enable verbose debug logging, real-time meter, and latency telemetry")
+    parser.add_argument("--mic-test", action="store_true", help="Run standalone microphone and VAD VU meter test")
+    parser.add_argument("--list-devices", action="store_true", help="List all available audio input devices")
+    parser.add_argument("--benchmark", action="store_true", help="Benchmark STT latency between tiny.en and base.en")
+    parser.add_argument("--config", type=str, default="config/config.json", help="Path to configuration file")
     args = parser.parse_args()
 
-    if args.calibrate:
-        config = ConfigManager()
-        stream = AudioStream()
-        from src.audio.calibrator import Calibrator
-        calibrator = Calibrator(config, stream)
-        calibrator.run_calibration()
+    if args.list_devices:
+        run_list_devices()
         return
 
-    app = AppController(debug=args.debug)
-    app.run()
+    if args.mic_test:
+        run_mic_test(config_path=args.config)
+        return
+
+    if args.benchmark:
+        run_benchmark()
+        return
+
+    assistant = ClaposAssistant(config_path=args.config, debug=args.debug)
+
+    def sig_handler(signum, frame):
+        assistant.stop()
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, sig_handler)
+    signal.signal(signal.SIGTERM, sig_handler)
+
+    assistant.run_forever()
+
 
 if __name__ == "__main__":
     main()

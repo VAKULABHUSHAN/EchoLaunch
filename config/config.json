@@ -1,51 +1,80 @@
 {
     "audio": {
-        "sample_rate": 44100,
+        "sample_rate": 16000,
         "chunk_size": 1024,
-        "clap_threshold": 0.75,
-        "minimum_clap_interval": 0.15,
-        "sequence_timeout": 1.5,
-        "energy_threshold": 0.05,
-        "peak_threshold": 0.2
+        "device": null,
+        "reconnect_interval": 2.0,
+        "max_reconnect_attempts": 5
     },
-    "commands": {
-        "dev mode": {
+    "vad": {
+        "adaptive_threshold": true,
+        "noise_floor_window": 2.0,
+        "sensitivity_multiplier": 2.0,
+        "minimum_threshold": 0.004,
+        "maximum_threshold": 0.05,
+        "silence_duration": 0.45,
+        "minimum_speech_duration": 0.20,
+        "max_recording_duration": 6.0,
+        "pre_roll_duration": 0.4
+    },
+    "voice": {
+        "model": "base.en",
+        "device": "cpu",
+        "compute_type": "int8",
+        "mode": "CONTINUOUS_COMMAND"
+    },
+    "transcription": {
+        "min_log_probability": -1.75,
+        "max_no_speech_probability": 0.6,
+        "minimum_text_length": 2
+    },
+    "intent": {
+        "conversation_threshold": 0.65,
+        "action_threshold": 0.82,
+        "global_cooldown": 2.0,
+        "duplicate_intent_window": 5.0,
+        "unknown_command_cooldown": 4.0
+    },
+    "tts": {
+        "rate": 175,
+        "volume": 1.0,
+        "cooldown_duration": 0.3
+    },
+    "workflow": {
+        "launch_verification_timeout": 10.0
+    },
+    "automation": {
+        "enabled": true
+    },
+    "assistant": {
+        "startup_greeting": true,
+        "startup_message": "CLAPOS is online.",
+        "completion_feedback": true
+    },
+    "workflows": {
+        "dev_mode": {
             "name": "Developer Mode",
-            "aliases": ["dev", "developer mode", "developer", "coding mode"],
             "apps": [
                 {
                     "name": "VS Code",
                     "path": "C:\\Users\\VAKUL\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
                 },
                 {
-                    "name": "Antigravity IDE",
+                    "name": "Antigravity",
                     "path": "C:\\Users\\VAKUL\\AppData\\Local\\Programs\\Antigravity IDE\\Antigravity IDE.exe"
                 },
                 {
                     "name": "Google Chrome",
                     "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-                },
-                {
-                    "name": "Kreo Mouse",
-                    "path": "C:\\Users\\VAKUL\\Downloads\\Kreo_Harpy_Gaming_Mouse.exe"
-                },
-                {
-                    "name": "WhatsApp",
-                    "path": "whatsapp:"
                 }
             ]
         },
-        "game mode": {
+        "game_mode": {
             "name": "Gaming Mode",
-            "aliases": ["game", "gaming", "play", "play mode"],
             "apps": [
                 {
                     "name": "VALORANT",
-                    "path": "C:\\Riot Games\\VALORANT\\live\\VALORANT.exe"
-                },
-                {
-                    "name": "Kreo Mouse",
-                    "path": "C:\\Users\\VAKUL\\Downloads\\Kreo_Harpy_Gaming_Mouse.exe"
+                    "path": "C:\\Users\\VAKUL\\Desktop\\VALORANT.lnk"
                 },
                 {
                     "name": "Google Chrome",
@@ -53,5 +82,35 @@
                 }
             ]
         }
+    },
+    "responses": {
+        "DEVELOPER_MODE": [
+            "Sure, opening your development environment.",
+            "Developer mode activated.",
+            "Alright, getting your coding workspace ready.",
+            "Opening your development tools."
+        ],
+        "GAMING_MODE": [
+            "Alright, switching to gaming mode.",
+            "Gaming setup activated.",
+            "Let's game.",
+            "Launching your gaming environment."
+        ],
+        "GREETING": [
+            "Hey! What can I do for you?",
+            "Hey! I'm listening.",
+            "Hello! Ready for your command.",
+            "Hi there! How can I help?"
+        ],
+        "STATUS": [
+            "I'm running and ready for your command.",
+            "Always listening.",
+            "All systems normal, ready when you are."
+        ],
+        "UNKNOWN": [
+            "I didn't quite understand that.",
+            "Sorry, I don't know how to do that yet.",
+            "Could you try saying that differently?"
+        ]
     }
 }

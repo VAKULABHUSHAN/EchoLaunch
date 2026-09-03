@@ -83,3 +83,176 @@ Now, please clap naturally 5 times.
 [WARNING] 2026-08-31 19:17:59 - AudioStream - Audio stream status: input overflow
 [WARNING] 2026-08-31 19:18:00 - AudioStream - Audio stream status: input overflow
 [WARNING] 2026-08-31 19:18:00 - AudioStream - Audio stream status: input overflow
+[INFO] 2026-09-03 19:35:38 - ActivationManager - [ACTIVATION] Wake word detected. Ready for command.
+[INFO] 2026-09-03 19:36:44 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 19:36:46 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 19:38:33 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 19:38:33 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 19:38:38 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 19:38:38 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 19:38:38 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 19:38:39 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 19:38:39 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 19:39:18 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 19:39:19 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 19:39:24 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 19:39:24 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 19:39:24 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 19:39:25 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 19:39:25 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 19:39:25 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 19:45:21 - SpeechRecognizer - Faster-Whisper model loaded in 356263ms.
+[INFO] 2026-09-03 19:46:57 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 19:46:57 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 19:46:57 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 19:46:57 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 19:46:57 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 19:47:01 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 19:47:01 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 19:47:13 - ActivationManager - [ACTIVATION] Wake word detected. Ready for command.
+[INFO] 2026-09-03 19:48:45 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 19:48:47 - SpeechRecognizer - Faster-Whisper model loaded in 1688ms.
+[INFO] 2026-09-03 19:48:47 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 19:48:47 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 19:48:47 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 19:48:48 - AudioManager - [MICROPHONE] Active: Microphone Array (Intel® Smart  (Sample Rate: 16000Hz, Chunks: 1024)
+[INFO] 2026-09-03 19:49:39 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 19:49:41 - SpeechRecognizer - Faster-Whisper model loaded in 1672ms.
+[INFO] 2026-09-03 19:49:41 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 19:49:41 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 19:49:41 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 19:49:41 - AudioManager - [MICROPHONE] Active: Microphone Array (Intel® Smart  (Sample Rate: 16000Hz, Chunks: 1024)
+[INFO] 2026-09-03 20:00:48 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:00:50 - SpeechRecognizer - Faster-Whisper model loaded in 1488ms.
+[INFO] 2026-09-03 20:00:50 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:00:50 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:00:50 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 20:00:50 - AudioManager - [MICROPHONE] Active: Microphone Array (Intel® Smart  (Sample Rate: 16000Hz, Chunks: 1024)
+[INFO] 2026-09-03 20:00:58 - AudioManager - Audio stream stopped.
+[INFO] 2026-09-03 20:00:58 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-03 20:00:58 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:00:58 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:01:01 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:01:02 - SpeechRecognizer - Faster-Whisper model loaded in 1646ms.
+[INFO] 2026-09-03 20:01:02 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:01:02 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:01:03 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 20:01:03 - AudioManager - [MICROPHONE] Active: Microphone Array (Intel® Smart  (Sample Rate: 16000Hz, Chunks: 1024)
+[INFO] 2026-09-03 20:01:30 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:01:30 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:01:30 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:07:40 - SpeechRecognizer - Loading Faster-Whisper model 'tiny.en' on cpu (int8)...
+[INFO] 2026-09-03 20:07:53 - SpeechRecognizer - Faster-Whisper model loaded in 12931ms.
+[INFO] 2026-09-03 20:07:57 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:07:59 - SpeechRecognizer - Faster-Whisper model loaded in 1859ms.
+[INFO] 2026-09-03 20:08:24 - SpeechRecognizer - Loading Faster-Whisper model 'tiny.en' on cpu (int8)...
+[INFO] 2026-09-03 20:08:26 - SpeechRecognizer - Faster-Whisper model loaded in 2158ms.
+[INFO] 2026-09-03 20:08:26 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:08:26 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:08:26 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 20:08:56 - SpeechRecognizer - Loading Faster-Whisper model 'tiny.en' on cpu (int8)...
+[INFO] 2026-09-03 20:08:58 - SpeechRecognizer - Faster-Whisper model loaded in 1512ms.
+[INFO] 2026-09-03 20:10:22 - AudioManager - Audio stream stopped.
+[INFO] 2026-09-03 20:10:22 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-03 20:10:22 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:10:22 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:11:18 - SpeechRecognizer - Loading Faster-Whisper model 'tiny.en' on cpu (int8)...
+[INFO] 2026-09-03 20:11:19 - SpeechRecognizer - Faster-Whisper model loaded in 1474ms.
+[INFO] 2026-09-03 20:11:21 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:11:22 - SpeechRecognizer - Faster-Whisper model loaded in 1136ms.
+[INFO] 2026-09-03 20:11:48 - SpeechRecognizer - Loading Faster-Whisper model 'tiny.en' on cpu (int8)...
+[INFO] 2026-09-03 20:11:49 - SpeechRecognizer - Faster-Whisper model loaded in 1398ms.
+[INFO] 2026-09-03 20:11:49 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:11:49 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:11:49 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 20:12:43 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-03 20:12:43 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:12:43 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:16:20 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:18:34 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:18:35 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 20:18:38 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:18:38 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:18:38 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:18:38 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:18:38 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:18:50 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:19:30 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:19:32 - SpeechRecognizer - Faster-Whisper model loaded in 1792ms.
+[INFO] 2026-09-03 20:19:32 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:19:32 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:19:32 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 20:20:12 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:20:14 - SpeechRecognizer - Faster-Whisper model loaded in 1610ms.
+[INFO] 2026-09-03 20:20:14 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:20:14 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:20:14 - TTSEngine - TTS Engine initialized in worker thread.
+[INFO] 2026-09-03 20:20:23 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:20:23 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:20:23 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:22:46 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:22:46 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:22:46 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:26:07 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-03 20:26:07 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:26:07 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:26:12 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:26:14 - SpeechRecognizer - Faster-Whisper model loaded in 1621ms.
+[INFO] 2026-09-03 20:26:14 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:26:14 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:26:14 - TTSEngine - TTS Engine initialized in worker thread.
+[ERROR] 2026-09-03 20:26:19 - AppLauncher - Failed to launch 'VALORANT' at C:\Riot Games\VALORANT\live\VALORANT.exe: [WinError 5] Access is denied: 'C:\\Riot Games\\VALORANT\\live\\VALORANT.exe'
+[INFO] 2026-09-03 20:26:22 - AppLauncher - Launch command issued for 'Kreo Mouse Software'.
+[INFO] 2026-09-03 20:26:22 - AppLauncher - 'Google Chrome' is already running.
+[WARNING] 2026-09-03 20:26:22 - EventRouter - [WORKFLOW ERROR] I couldn't open VALORANT. Please check the application path.
+[INFO] 2026-09-03 20:27:39 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:27:39 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:27:39 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:29:57 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-03 20:29:57 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:29:57 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:34:21 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-03 20:34:27 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:34:37 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:34:37 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-03 20:34:45 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:34:45 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:34:45 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:34:45 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:34:47 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:34:48 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:34:48 - SpeechRecognizer - Faster-Whisper model loaded in 1442ms.
+[INFO] 2026-09-03 20:36:04 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:36:06 - SpeechRecognizer - Faster-Whisper model loaded in 1579ms.
+[INFO] 2026-09-03 20:36:06 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:36:06 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:36:06 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-03 20:36:16 - AppLauncher - Launch command issued for 'VS Code'.
+[INFO] 2026-09-03 20:36:16 - AppLauncher - 'Antigravity' is already running.
+[INFO] 2026-09-03 20:36:16 - AppLauncher - 'Google Chrome' is already running.
+[ERROR] 2026-09-03 20:36:47 - AppLauncher - Failed to launch 'VALORANT' at C:\Riot Games\VALORANT\live\VALORANT.exe: [WinError 5] Access is denied: 'C:\\Riot Games\\VALORANT\\live\\VALORANT.exe'
+[INFO] 2026-09-03 20:36:47 - AppLauncher - 'Google Chrome' is already running.
+[WARNING] 2026-09-03 20:36:47 - EventRouter - [WORKFLOW ERROR] I couldn't open VALORANT. Please check the application path.
+[ERROR] 2026-09-03 20:37:17 - AppLauncher - Failed to launch 'VALORANT' at C:\Riot Games\VALORANT\live\VALORANT.exe: [WinError 5] Access is denied: 'C:\\Riot Games\\VALORANT\\live\\VALORANT.exe'
+[INFO] 2026-09-03 20:37:17 - AppLauncher - 'Google Chrome' is already running.
+[WARNING] 2026-09-03 20:37:17 - EventRouter - [WORKFLOW ERROR] I couldn't open VALORANT. Please check the application path.
+[INFO] 2026-09-03 20:37:42 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-03 20:37:42 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:37:42 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:40:41 - AppLauncher - Launch command issued for 'VALORANT'.
+[INFO] 2026-09-03 20:40:57 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:40:57 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-03 20:40:57 - AppLauncher - Launch command issued for 'VALORANT'.
+[INFO] 2026-09-03 20:40:57 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:41:01 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-03 20:41:02 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:41:40 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-03 20:41:42 - SpeechRecognizer - Faster-Whisper model loaded in 1719ms.
+[INFO] 2026-09-03 20:41:42 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-03 20:41:42 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-03 20:41:42 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-03 20:41:50 - AppLauncher - Launch command issued for 'VALORANT'.
+[INFO] 2026-09-03 20:41:50 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-03 20:42:31 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-03 20:42:31 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-03 20:42:31 - WorkflowManager - Workflow worker stopped.
