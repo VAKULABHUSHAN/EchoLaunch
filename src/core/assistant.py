@@ -142,9 +142,11 @@ class ClaposAssistant:
         conv_th = float(intent_cfg.get("conversation_threshold", 0.65))
         action_th = float(intent_cfg.get("action_threshold", 0.82))
 
+        intent_dataset_path = intent_cfg.get("dataset_path", "config/intent_keywords.json")
         self.intent_engine = IntentEngine(
             conversation_threshold=conv_th,
-            action_threshold=action_th
+            action_threshold=action_th,
+            dataset_path=intent_dataset_path
         )
 
         self.event_router = EventRouter(

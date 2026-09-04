@@ -270,3 +270,16 @@ Now, please clap naturally 5 times.
 [INFO] 2026-09-03 20:50:22 - AppLauncher - Launch command issued for 'YouTube'.
 [INFO] 2026-09-03 20:50:26 - WorkflowManager - Workflow worker stopped.
 [INFO] 2026-09-03 20:50:28 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-04 15:41:03 - SpeechRecognizer - Loading Faster-Whisper model 'base.en' on cpu (int8)...
+[INFO] 2026-09-04 15:41:06 - SpeechRecognizer - Faster-Whisper model loaded in 2271ms.
+[INFO] 2026-09-04 15:41:06 - WorkflowManager - Workflow worker loop active.
+[INFO] 2026-09-04 15:41:06 - SpeechRecognizer - STT worker loop active.
+[INFO] 2026-09-04 15:41:06 - TTSEngine - TTS Engine initialized using native Windows SAPI.SpVoice.
+[INFO] 2026-09-04 15:41:15 - AppLauncher - Launch command issued for 'VALORANT'.
+[INFO] 2026-09-04 15:41:15 - AppLauncher - 'Google Chrome' is already running.
+[INFO] 2026-09-04 15:54:55 - SpeechRecognizer - STT worker thread stopped.
+[INFO] 2026-09-04 15:54:57 - TTSEngine - TTS worker thread stopped.
+[INFO] 2026-09-04 15:54:57 - WorkflowManager - Workflow worker stopped.
+[INFO] 2026-09-04 15:59:44 - IntentDataset - Loaded intent dataset from config/intent_keywords.json
+[INFO] 2026-09-04 16:04:39 - IntentDataset - Loaded intent dataset from config/intent_keywords.json
+[INFO] 2026-09-04 16:04:47 - IntentDataset - Loaded intent dataset from config/intent_keywords.json

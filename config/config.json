@@ -33,7 +33,8 @@
         "action_threshold": 0.82,
         "global_cooldown": 2.0,
         "duplicate_intent_window": 5.0,
-        "unknown_command_cooldown": 4.0
+        "unknown_command_cooldown": 4.0,
+        "dataset_path": "config/intent_keywords.json"
     },
     "tts": {
         "rate": 175,

@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set
 from rapidfuzz import fuzz
+from src.core.intent_dataset import IntentDataset
 from src.utils.logger import setup_logger
 
 logger = setup_logger("IntentEngine")
@@ -14,80 +15,67 @@ class IntentResult:
 
 class IntentEngine:
     """
-    3-Layer Intent Understanding Engine:
-    - Layer 1: Exact normalized phrase matching
-    - Layer 2: Semantic / Key phrase matching with required semantic anchors
-    - Layer 3: Fuzzy matching (Rapidfuzz) with anchor verification
-
-    Supports common Whisper phonetic transcriptions of short spoken words
-    like 'dev mode' ('demo', 'do more', 'deve mode', 'deb mode').
+    3-Layer Intent Understanding Engine with Strict False-Positive Protection:
+    - Layer 1: Exact normalized phrase matching against defined command phrases.
+    - Layer 2: Semantic command structure matching:
+        * Whole-word phrase boundary checking (\\b)
+        * Mandatory [Action Verb] + [Target Entity] or [Mode Trigger] for action intents
+        * Negative exclusion filtering to block conversational traps (e.g. "demo", "do more")
+    - Layer 3: Rapidfuzz fallback with strict gating (action intents require action/mode keywords).
     """
     CONVERSATIONAL_INTENTS = {"GREETING", "STATUS", "TIME"}
     ACTION_INTENTS = {"DEVELOPER_MODE", "GAMING_MODE", "ENTERTAINMENT_MODE"}
 
-    # Comprehensive dictionaries of natural intent phrases
-    INTENT_PHRASES: Dict[str, List[str]] = {
-        "DEVELOPER_MODE": [
-            "dev mode", "developer mode", "coding mode", "work mode",
-            "open my development setup", "open development setup",
-            "start coding", "open vscode", "open code", "let's code", "lets code",
-            "prepare my workspace", "prepare coding setup", "prepare workspace",
-            "coding setup", "dev setup", "developer setup", "code mode",
-            # Common acoustic/phonetic transcriptions of short "dev mode"
-            "demo", "do more", "deb mode", "def mode", "deve mode", "dev", "developer"
-        ],
-        "GAMING_MODE": [
-            "game mode", "gaming mode", "play mode", "let's play", "lets play",
-            "start gaming", "launch valorant", "open valorant", "prepare gaming setup",
-            "open my games", "open games", "gaming setup", "game setup", "game", "gaming"
-        ],
-        "ENTERTAINMENT_MODE": [
-            "entertainment mode", "entertain mode", "open youtube", "launch youtube",
-            "youtube mode", "watch youtube", "watch videos", "play youtube",
-            "open video", "chill mode", "relax mode", "video mode", "youtube", "entertainment"
-        ],
-        "GREETING": [
-            "hello", "hey", "hi", "hey clapos", "hello clapos", "hi clapos",
-            "good morning", "good afternoon", "good evening", "whats up", "what's up"
-        ],
-        "STATUS": [
-            "what are you doing", "are you listening", "are you there",
-            "can you hear me", "status", "system status", "how are you"
-        ],
-        "TIME": [
-            "what time is it", "tell me the time", "current time",
-            "what's the time now", "whats the time now", "can you tell me the time",
-            "what is the time", "time now", "tell time"
-        ]
-    }
-
-    # Semantic anchor keywords required for each intent category
-    SEMANTIC_ANCHORS: Dict[str, Set[str]] = {
-        "DEVELOPER_MODE": {"dev", "developer", "coding", "vscode", "code", "workspace", "demo", "deve", "more"},
-        "GAMING_MODE": {"game", "gaming", "valorant", "games", "play"},
-        "ENTERTAINMENT_MODE": {"entertainment", "youtube", "videos", "video", "entertain", "chill", "relax"},
-        "GREETING": {"hello", "hey", "hi", "morning", "afternoon", "evening"},
-        "STATUS": {"doing", "listening", "status"},
-        "TIME": {"time", "clock"}
-    }
-
     def __init__(
         self,
         conversation_threshold: float = 0.65,
-        action_threshold: float = 0.82
+        action_threshold: float = 0.82,
+        dataset_path: str = "config/intent_keywords.json"
     ):
         self.conversation_threshold = conversation_threshold
         self.action_threshold = action_threshold
+        self.dataset = IntentDataset(dataset_path=dataset_path)
+
+        # Sync intent sets with dataset
+        self.ACTION_INTENTS = self.dataset.get_action_intent_names() or self.ACTION_INTENTS
+        self.CONVERSATIONAL_INTENTS = self.dataset.get_conversational_intent_names() or self.CONVERSATIONAL_INTENTS
+        self.INTENT_PHRASES = self.dataset.get_all_phrases()
 
     def _normalize(self, text: str) -> str:
-        """Lowercases, removes punctuation, and normalizes whitespace."""
-        text = re.sub(r"[^\w\s]", "", text)
+        """Lowercases, removes apostrophes, strips punctuation, and normalizes whitespace."""
+        text = text.replace("'", "").replace("’", "")
+        text = re.sub(r"[^\w\s]", " ", text)
         return " ".join(text.split()).strip().lower()
+
+    def _has_action_verb(self, normalized: str) -> bool:
+        """Checks if any defined action verb is present as a whole word."""
+        for verb in self.dataset.action_verbs:
+            clean_v = self._normalize(verb)
+            if re.search(rf"\b{re.escape(clean_v)}\b", normalized):
+                return True
+        return False
+
+    def _has_mode_trigger(self, normalized: str) -> bool:
+        """Checks if any defined mode trigger is present as a whole phrase."""
+        for mode in self.dataset.mode_triggers:
+            clean_m = self._normalize(mode)
+            if re.search(rf"\b{re.escape(clean_m)}\b", normalized):
+                return True
+        return False
+
+    def _matches_negative_exclusions(self, intent: str, normalized: str) -> bool:
+        """Returns True if the text contains any negative exclusion phrases for the intent."""
+        exclusions = self.dataset.get_negative_exclusions(intent)
+        for excl in exclusions:
+            clean_excl = self._normalize(excl)
+            if re.search(rf"\b{re.escape(clean_excl)}\b", normalized):
+                return True
+        return False
 
     def parse_intent(self, raw_text: str) -> IntentResult:
         """
-        Parses text through Layer 1 (Exact), Layer 2 (Semantic), and Layer 3 (Fuzzy).
-        Applies tiered confirmation thresholds.
+        Parses text through Layer 1 (Exact), Layer 2 (Semantic/Trigger), and Layer 3 (Fuzzy).
+        Applies strict gating to prevent casual conversation from triggering desktop actions.
         """
         normalized = self._normalize(raw_text)
         if not normalized:
@@ -96,41 +84,82 @@ class IntentEngine:
         words = set(normalized.split())
 
         # -------------------------------------------------------------
-        # LAYER 1: Exact Phrase Matching
+        # LAYER 1: Exact Full-Phrase Matching
         # -------------------------------------------------------------
         for intent, phrases in self.INTENT_PHRASES.items():
             for phrase in phrases:
                 if normalized == self._normalize(phrase):
                     return IntentResult(intent, 1.0, raw_text)
 
+        has_action_verb = self._has_action_verb(normalized)
+        has_mode_trigger = self._has_mode_trigger(normalized)
+
         # -------------------------------------------------------------
-        # LAYER 2: Semantic / Substring Matching
+        # LAYER 2: Semantic / Action Command Structure Matching
         # -------------------------------------------------------------
-        for intent, phrases in self.INTENT_PHRASES.items():
-            anchors = self.SEMANTIC_ANCHORS.get(intent, set())
-            # Require at least one anchor word to be present
-            if not words.intersection(anchors):
+        # 2A. Action Intents: Must have explicit command structure
+        for intent in self.ACTION_INTENTS:
+            # Check negative exclusion phrases first
+            if self._matches_negative_exclusions(intent, normalized):
                 continue
 
+            # Check if any multi-word exact phrase is embedded with word boundaries
+            phrases = self.INTENT_PHRASES.get(intent, [])
+            matched_phrase = False
             for phrase in phrases:
                 clean_phrase = self._normalize(phrase)
-                # Check if multi-word phrase is contained in input
-                if clean_phrase in normalized:
-                    conf = 0.95
+                # Only match multi-word phrases or mode triggers to avoid single-word accidents
+                if " " in clean_phrase or clean_phrase in self.dataset.mode_triggers:
+                    if re.search(rf"\b{re.escape(clean_phrase)}\b", normalized):
+                        matched_phrase = True
+                        break
+
+            if matched_phrase:
+                conf = 0.95
+                if self._check_threshold(intent, conf):
+                    return IntentResult(intent, conf, raw_text)
+
+            # Check dynamic [Action Verb / Mode Trigger] + [Target Anchor]
+            if has_action_verb or has_mode_trigger:
+                targets = self.dataset.get_action_targets(intent)
+                for target in targets:
+                    clean_target = self._normalize(target)
+                    if re.search(rf"\b{re.escape(clean_target)}\b", normalized):
+                        conf = 0.95
+                        if self._check_threshold(intent, conf):
+                            return IntentResult(intent, conf, raw_text)
+
+        # 2B. Conversational Intents: Match embedded conversational phrases with word boundaries
+        for intent in self.CONVERSATIONAL_INTENTS:
+            phrases = self.INTENT_PHRASES.get(intent, [])
+            for phrase in phrases:
+                clean_phrase = self._normalize(phrase)
+                if re.search(rf"\b{re.escape(clean_phrase)}\b", normalized):
+                    conf = 0.92
                     if self._check_threshold(intent, conf):
                         return IntentResult(intent, conf, raw_text)
 
         # -------------------------------------------------------------
-        # LAYER 3: Fuzzy Matching Fallback (with semantic anchor validation)
+        # LAYER 3: Fuzzy Matching Fallback (Strictly Gated)
         # -------------------------------------------------------------
         best_intent = "UNKNOWN"
         highest_score = 0.0
 
         for intent, phrases in self.INTENT_PHRASES.items():
-            anchors = self.SEMANTIC_ANCHORS.get(intent, set())
-            # Must contain a semantic anchor for this intent
-            if not words.intersection(anchors):
-                continue
+            is_action = intent in self.ACTION_INTENTS
+
+            # Strict guard: For action intents, DO NOT fuzzy match casual speech without action/mode triggers
+            if is_action:
+                if not (has_action_verb or has_mode_trigger):
+                    continue
+                if self._matches_negative_exclusions(intent, normalized):
+                    continue
+
+            # For conversational intents, require at least one conversational anchor word
+            if not is_action:
+                anchors = set(self.dataset.get_conversational_anchors(intent))
+                if not words.intersection(anchors):
+                    continue
 
             for phrase in phrases:
                 clean_phrase = self._normalize(phrase)
